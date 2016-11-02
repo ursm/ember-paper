@@ -3,14 +3,14 @@
   "fastboot": {
     "moduleWhitelist": [],
     "manifest": {
-      "appFile": "fastboot/dummy-7a0be167a8cc14ea7bbe4dd83a99572e.js",
-      "vendorFile": "fastboot/vendor-176d11e495f152b750d8172dc072fe4f.js",
+      "appFile": "fastboot/dummy-1745051ab01a0b2a69cff5e6eb7f464e.js",
+      "vendorFile": "fastboot/vendor-eb82cf46369779520e9c6b4509cbf072.js",
       "htmlFile": "index.html"
     },
     "appConfig": {
       "modulePrefix": "dummy",
       "environment": "production",
-      "baseURL": "/ember-paper",
+      "rootURL": "/ember-paper/release-1",
       "locationType": "hash",
       "EmberENV": {
         "FEATURES": {}
@@ -18,7 +18,7 @@
       "APP": {
         "rootElement": "body",
         "name": "ember-paper",
-        "version": "1.0.0-alpha.3+bd130982",
+        "version": "1.0.0-alpha.7+3ab07528",
         "autoboot": false
       },
       "contentSecurityPolicy": {
