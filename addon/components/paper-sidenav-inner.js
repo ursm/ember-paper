@@ -5,7 +5,7 @@
 import Ember from 'ember';
 import TransitionMixin from 'ember-css-transitions/mixins/transition-mixin';
 
-const { Component, inject, computed, $, run } = Ember;
+const { Component, inject, computed, $, run, getOwner } = Ember;
 
 /**
  * @class PaperSidenavInner
@@ -35,9 +35,7 @@ export default Component.extend(TransitionMixin, {
   init() {
     // need to updateLockedOpen() first because otherwise the transition classes
     // would be applied due to transition mixin's `init`
-    if (typeof FastBoot === 'undefined') {
-      this.updateLockedOpen();
-    }
+    this.updateLockedOpen();
     this._super(...arguments);
     this.get('paperSidenav').register(this.get('name'), this);
   },
@@ -62,6 +60,10 @@ export default Component.extend(TransitionMixin, {
     // otherwise proceed with normal matchMedia test
     if (typeof lockedOpen === 'boolean') {
       isLockedOpen = lockedOpen;
+    } else if (typeof FastBoot !== 'undefined') {
+      let MobileDetect = FastBoot.require('mobile-detect');
+      let userAgent = getOwner(this).lookup('service:fastboot').get('request.headers').get('User-Agent');
+      isLockedOpen = !new MobileDetect(userAgent).is('mobile');
     } else {
       let mediaQuery = this.get('constants').MEDIA[lockedOpen] || lockedOpen;
       isLockedOpen = window.matchMedia(mediaQuery).matches;
